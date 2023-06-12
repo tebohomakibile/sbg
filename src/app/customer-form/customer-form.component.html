@@ -1,0 +1,42 @@
+<div class="container">
+    <form (ngSubmit)="submitForm()" #myForm="ngForm">
+        <div class="mb-3 mt-3">
+            <label for="name">First Name: </label>
+            <input class="form-control" [(ngModel)]="customerInfo.name" name="name" type="text" required placeholder="First Name" #name="ngModel" />
+            <app-validation-message [message]="'Name is required'" *ngIf="name.invalid && (name.dirty || name.touched)" ></app-validation-message>
+
+            <!--I was playing around with the idea of creating re-usable input component-->
+            <!-- <app-custom-input label="First Name:" [value]="customerInfo.name" name="name" placeholder="First Name" templateRef="name"></app-custom-input> -->
+        </div>
+
+        <div class="mb-3 mt-3">
+            <label for="surname">Surame: </label>
+            <input class="form-control" [(ngModel)]="customerInfo.surname" name="surname" type="text" required placeholder="Surname" #surname="ngModel" />
+            <app-validation-message [message]="'Surname is required'" *ngIf="surname.invalid && (surname.dirty || surname.touched)" ></app-validation-message>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <label for="emailAddress">Email Address: </label>
+            <input class="form-control" [(ngModel)]="customerInfo.emailAddress" name="emailAddress" type="text" required placeholder="Email Address" #email="ngModel" />
+            <app-validation-message [message]="'Email Address is required'" *ngIf="email.invalid && (email.dirty || email.touched)" ></app-validation-message>
+        </div>
+
+        <div class="mb-3 mt-3">
+            <label for="contactNumber">Contact Number: </label>
+            <input class="form-control" [(ngModel)]="customerInfo.contactNumber" name="contactNumber" type="text" required placeholder="Contact Number" #contact="ngModel" />
+            <app-validation-message [message]="'Contact Number is required'" *ngIf="contact.invalid && (contact.dirty || contact.touched)" ></app-validation-message>
+        </div>
+    
+        <div class="mb-3 mt-3">
+            <label for="product">Product: </label>
+            <select class="form-control" name="product" required [(ngModel)]="customerInfo.product" #product="ngModel">
+                <option *ngFor="let product of productOptions" [value]="product">
+                    {{product}}
+                </option>
+            </select>
+            <app-validation-message [message]="'Product is required'" *ngIf="product.invalid && (product.dirty || product.touched)" ></app-validation-message>
+        </div>
+    
+        <button type="submit" class="btn btn-success" [disabled]="myForm.invalid">Submit</button>
+    </form>
+</div>

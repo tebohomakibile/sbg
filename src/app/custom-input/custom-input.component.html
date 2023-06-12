@@ -1,0 +1,8 @@
+<label for="name">{{label}}</label>
+<input class="form-control" [(ngModel)]="value" [name]="name" type="text" required [placeholder]="placeholder" #{{templateRef}}="ngModel" />
+
+<div class="alert alert-danger">
+    {{validationMessage}}
+</div>
+
+<!-- To be continued -->
